@@ -10,7 +10,21 @@ with open('posts.json') as f:
 path = 'videos'  # 需要重命名文件夹路径
 file_names = os.listdir(path)
 
-print(file_names)
+
+def rename(old_name, new_name):
+    file_names = os.listdir(path)
+    index = new_name.index('/') + 1
+    if new_name[-6] == '_':
+        new_name_f = new_name[index:-6]
+    else:
+        new_name_f = new_name[index:-4]
+    i = 0
+    for filename in file_names:
+        if new_name_f in filename:
+            i += 1
+    new_name = path + '/' + new_name_f + '_' + str(i) + '.mp4'
+    os.rename(old_name, new_name)
+
 
 for name in file_names:
     old_name = path + '/' + name
@@ -34,16 +48,7 @@ for name in file_names:
     try:
         os.rename(old_name, new_name)
     except FileExistsError:
-        if new_name[-6] != '_':
-            new_name = new_name[:-4] + '_1' + '.mp4'
-        else:
-            file_names = os.listdir(path)
-            i = 0
-            for filename in file_names:
-                if new_name in filename:
-                    i += 1
-            new_name = new_name[:-5] + str(i) + '.mp4'
-            os.rename(old_name, new_name)
+        rename(old_name, new_name)
 
 
 print('succeed')
