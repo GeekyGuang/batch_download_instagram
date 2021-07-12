@@ -5,8 +5,11 @@ import re
 L = instaloader.Instaloader()
 L.login(user='', passwd='')  # 填入你的ins用户名和密码
 # L.load_session_from_file(username='')
+
+profile_name = 'lauren.jumps'  # 博主用户名
+
 posts = instaloader.Profile.from_username(
-    L.context, "lauren.jumps").get_posts()
+    L.context, profile_name).get_posts()
 
 image_urls = []
 post_infos = []
