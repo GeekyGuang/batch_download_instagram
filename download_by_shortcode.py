@@ -11,11 +11,12 @@ L = instaloader.Instaloader(
 )
 
 L.login(user='', passwd='')  # 填入你的ins用户名和密码
-# L.load_session_from_file('')
+# L.load_session_from_file('x20920')
 
 
 for shortcode in shortcodes:
     post = Post.from_shortcode(L.context, shortcode)
-    L.download_post(post, target='lauren_jumps/fancy_footwork/')
+    if post.mediacount >= 1:
+        L.download_post(post, target='start here')
 
 # target是目标文件夹
