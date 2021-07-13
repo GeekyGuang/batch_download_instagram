@@ -1,3 +1,5 @@
+# 获取博主的所有推文信息和image/videos下载地址
+
 import instaloader
 import json
 import re

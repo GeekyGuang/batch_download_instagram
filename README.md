@@ -30,3 +30,6 @@ pip3 install instaloader
 
 ### 6. video_renamer.py
 运行video_renamer.py重命名视频
+
+### 参考
+https://martechwithme.com/download-instagram-posts-stories-hashtags-highlights-python/

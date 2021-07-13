@@ -25,29 +25,12 @@
 })(console)
 
 
-// 获取下载链接
-const download_items = document.querySelectorAll('.download')
-const download_itemsArray = [...download_items]
-const download_itemshref = download_itemsArray.map(item => item.href).join('\n')
-// 保存下载到本地
-console.save(download_itemshref, '下载链接.txt')
+let a = document.querySelectorAll('a')
+let b = [...a]
+let c = b.filter(i => i.href.indexOf('/p/') > 0)
 
-// 获取shortcode和videoname
-const items = document.querySelectorAll('.item')
-const itemsArray = [...items]
-const itemsMap = itemsArray.map(item => {
-    shortcode = item.children[0].children[0].href.match(/(?<=\/p\/).*/)[0]
-    video_name_arr = item.children[1].children[1].href.match(/[^/]*\.mp4/)
-    if (video_name_arr) {
-        video_name = video_name_arr[0]
-    } else {
-        video_name = ''
-    }
-    return { shortcode: shortcode, video_name: video_name }
-})
-
-const shortcodes = itemsArray.map(item => {
-    shortcode_rough = item.children[0].children[0].href.match(/(?<=\/p\/).*/)[0]
+const shortcodes = c.map(item => {
+    shortcode_rough = item.href.match(/(?<=\/p\/).*/)[0]
     index = shortcode_rough.indexOf('/')
     shortcode = shortcode_rough.slice(0, index)
     return shortcode
@@ -55,5 +38,4 @@ const shortcodes = itemsArray.map(item => {
 
 const shortcodes_final = Array.from(new Set(shortcodes))
 
-console.save(itemsMap, 'code_video.json')
 console.save(shortcodes_final, 'shortcodes.json')
