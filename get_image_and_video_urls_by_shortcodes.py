@@ -11,7 +11,7 @@ L = instaloader.Instaloader(
 )
 
 L.login(user='', passwd='')  # 填入你的ins用户名和密码
-# L.load_session_from_file('x20920')
+# L.load_session_from_file('')
 
 image_urls = []
 video_urls = []
