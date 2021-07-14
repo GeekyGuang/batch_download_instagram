@@ -1,4 +1,4 @@
-# python + instaloader + IDM下载instagram博主全部视频和图片
+# python + instaloader + IDM批量下载instagram视频和图片
 
 ### 0. 安装instaloader
 ```bash
