@@ -5,8 +5,9 @@ from instaloader import Post, Profile
 
 L = instaloader.Instaloader(compress_json=False)
 
-L.login(user='', passwd='')  # 填入你的ins用户名和密码
-# L.load_session_from_file('')
+# L.login(user='', passwd='')  
+# 先用命令instaloader --login='你的用户名'登录，则会保存session
+L.load_session_from_file('你的用户名')
 
 profile = Profile.from_username(L.context, username="letsjumpla")  # 修改博主用户名
 

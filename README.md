@@ -1,35 +1,29 @@
-# JS+imginn+instaloader+IDM+python下载instagram博主全部视频和图片
+# python + instaloader + IDM下载instagram博主全部视频和图片
 
-### 1. get_video_urls.js
-打开https://imginn.com/,
-输入博主的用户名，加载出全部要下载的图片和视频
-
-Ctrl+Shift+J 打开控制台
-复制粘贴get_video_urls.js文件里的代码，回车
-
-得到2个文件：
-- 下载链接.tx是所有视频的下载链接，复制进IDM下载,将下载好的视频放在videos文件夹
-- code_video.json文件是shortcode和videoname的对应关系对象，稍后使用
-
-### 2. instaloader
-安装instaloader
+### 0. 安装instaloader
 ```bash
 pip3 install instaloader
 ```
 
-### 3. download.py
-运行download.py代码，得到2个文件：
-- posts.json文件里有shortcode,date,imagename
-- images.json文件里是所有图片的下载链接，复制进IDM下载，将下载好的图片放在images文件夹
+### 1. 通过shortcode下载post
+- 运行get_posts_by_shortcodes.py，会得到posts.json, images.json, videos.json三个文件
+- 复制images.json中的内容到IDM下载器下载图片
+- 复制videos.json中的内容到IDM下载器下载视频
+- 运行image_renamer.py重命名图片
+- 运行video_renamer.py重命名视频
 
-### 4. download_captions.py
-运行download_captions.py文件，得到所有推文的正文
+### 2. 下载某个博主的全部post
+- 运行get_posts_by_profile.py，会得到posts.json, images.json, videos.json三个文件
+- 之后下载和重命名操作步骤同上
 
-### 5. image_renamer.py
-运行image_renamer.py重命名图片
+### 3. 下载stories
+运行download_highlights.py，会下载指定博主的所有stories highlights
 
-### 6. video_renamer.py
-运行video_renamer.py重命名视频
+### 4. 多线程下载
+单线程下载太慢，可以使用多线程下载：download_by_shortcodes_multithreads.py
+不推荐用来下载视频，会出现下载的视频不完整的现象
+
 
 ### 参考
 https://martechwithme.com/download-instagram-posts-stories-hashtags-highlights-python/
+http://www.cxyzjd.com/article/w5688414/85175620

@@ -1,16 +1,18 @@
-# 一次下载一个shortcode对应的post
+# 一次下载一个shortcode对应的post,下载速度慢且易出错，不推荐
 
 import instaloader
 from instaloader import Post
+import json
 
 L = instaloader.Instaloader(
     compress_json=False
 )
 
-L.login(user='', passwd='')  # 填入你的ins用户名和密码
-# L.load_session_from_file('')
+# L.login(user='', passwd='')  
+# 先用命令instaloader --login='你的用户名'登录，则会保存session
+L.load_session_from_file('你的用户名')
 
-shortcode = 'CGKvz59MPsy'
+shortcode = 'CLHlg49szHt'
 
 post = Post.from_shortcode(L.context, shortcode)
 L.download_post(post, target='onePost')

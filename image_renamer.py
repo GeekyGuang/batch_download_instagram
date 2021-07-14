@@ -13,7 +13,10 @@ for name in file_names:
     old_name = path + '/' + name
     for post in posts:
         if post['image_name'] == name:
-            new_name = path + '/' + post['date'].replace(':', '-') + '.jpg'
+            if post['num'] != '':
+                new_name = path + '/' + post['date'].replace(':', '-') + '_' + post['num'] + '.jpg'
+            else:
+                new_name = path + '/' + post['date'].replace(':', '-') + '.jpg'
             break
     os.rename(old_name, new_name)
 
