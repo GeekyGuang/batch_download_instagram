@@ -20,8 +20,9 @@ pip3 install instaloader
 运行download_highlights.py，会下载指定博主的所有stories highlights
 
 ### 4. 多线程下载
-单线程下载太慢，可以使用多线程下载：download_by_shortcodes_multithreads.py
-不推荐用来下载视频，会出现下载的视频不完整的现象
+多线程下载比单线程快，但用来下载视频会有不完整的现象，适合只用来下载推文正文
+
+get_captions_by_profile_multithread.py和get_captions_by_shortcodes_multithread分别用profile和shortcodes下载
 
 
 ### 参考
