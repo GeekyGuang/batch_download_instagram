@@ -3,7 +3,6 @@ from time import time, sleep
 from queue import Queue
 from datetime import datetime
 import instaloader
-from shortcodes import shortcodes
 from instaloader import Post
 
 L = instaloader.Instaloader(
