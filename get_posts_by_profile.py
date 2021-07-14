@@ -8,9 +8,9 @@ import copy
 
 L = instaloader.Instaloader()
 
-# L.login(user='', passwd='')  
+# L.login(user='', passwd='')
 # 先用命令instaloader --login='你的用户名'登录，则会保存session
-L.load_session_from_file('你的用户名')
+L.load_session_from_file('')
 
 image_urls = []
 video_urls = []
@@ -18,7 +18,7 @@ post_infos = []
 image_patten = re.compile(r'[^/]*\.jpg')
 video_patten = re.compile(r'[^/]*\.mp4')
 
-profile_name = 'lauren.jumps'  # 博主用户名
+profile_name = 'nate_kg'  # 博主用户名
 
 posts = instaloader.Profile.from_username(
     L.context, profile_name).get_posts()
@@ -42,7 +42,7 @@ for post in posts:
                 video_urls.append(video_url)
                 video_name = video_patten.findall(video_url)[0]
             else:
-                video_name = ''    
+                video_name = ''
             post_info['video_name'] = video_name
             post_info['num'] = str(i)
             post_infos.append(copy.deepcopy(post_info))

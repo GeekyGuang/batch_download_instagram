@@ -7,14 +7,13 @@ with open('posts.json') as f:
 path = 'images'  # 需要重命名文件夹路径
 file_names = os.listdir(path)
 
-print(file_names)
-
 for name in file_names:
     old_name = path + '/' + name
     for post in posts:
         if post['image_name'] == name:
             if post['num'] != '':
-                new_name = path + '/' + post['date'].replace(':', '-') + '_' + post['num'] + '.jpg'
+                new_name = path + '/' + \
+                    post['date'].replace(':', '-') + '_' + post['num'] + '.jpg'
             else:
                 new_name = path + '/' + post['date'].replace(':', '-') + '.jpg'
             break
