@@ -21,8 +21,12 @@ pip3 install instaloader
 
 ### 4. 多线程下载
 多线程下载比单线程快，但用来下载视频会有不完整的现象，适合只用来下载推文正文
+- get_captions_by_profile_multithread.py
+- get_captions_by_shortcodes_multithread.py
 
-get_captions_by_profile_multithread.py和get_captions_by_shortcodes_multithread分别用profile和shortcodes下载
+### 5. 下载指定时间段的post
+- get_posts_in_a_specific_period.py
+- get_captions_in_a_specific_period.py 
 
 
 ### 参考
