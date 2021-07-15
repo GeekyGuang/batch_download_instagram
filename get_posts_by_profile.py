@@ -18,7 +18,7 @@ post_infos = []
 image_patten = re.compile(r'[^/]*\.jpg')
 video_patten = re.compile(r'[^/]*\.mp4')
 
-profile_name = 'nate_kg'  # 博主用户名
+profile_name = 'jumpropegal_'  # 博主用户名
 
 posts = instaloader.Profile.from_username(
     L.context, profile_name).get_posts()
