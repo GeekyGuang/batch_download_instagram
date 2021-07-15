@@ -19,28 +19,32 @@ post_infos = []
 image_patten = re.compile(r'[^/]*\.jpg')
 video_patten = re.compile(r'[^/]*\.mp4')
 
-profile_name = 'lauren.jumps'  # 博主用户名
+profile_name = 'jumpropegal_'  # 博主用户名
 
 posts = instaloader.Profile.from_username(
     L.context, profile_name).get_posts()
 
-SINCE = datetime(2021, 7, 13)  # 开始时间
-UNTIL = datetime(2021, 7, 14)  # 结束时间(不包含)
+SINCE = datetime(2020, 4, 1)  # 开始时间
+UNTIL = datetime(2020, 7, 1)  # 结束时间(不包含)
 
 for post in takewhile(lambda p: p.date > SINCE, dropwhile(lambda p: p.date > UNTIL, posts)):
     print(post.shortcode)
     post_info = {}
     post_info['shortcode'] = post.shortcode
     post_info['date'] = str(post.date)
+    image_url = post.url
+    image_urls.append(image_url)
+    image_name = image_patten.findall(image_url)[0]
+    post_info['image_name'] = image_name
     if post.typename == 'GraphSidecar':
         edges = post._field('edge_sidecar_to_children', 'edges')
         i = 0
         for item in edges:
             i += 1
-            image_url = item['node']['display_url']
-            image_urls.append(image_url)
-            image_name = image_patten.findall(image_url)[0]
-            post_info['image_name'] = image_name
+            # image_url = item['node']['display_url']
+            # image_urls.append(image_url)
+            # image_name = image_patten.findall(image_url)[0]
+            # post_info['image_name'] = image_name
             if item['node']["is_video"]:
                 video_url = item['node']['video_url']
                 video_urls.append(video_url)
@@ -52,10 +56,6 @@ for post in takewhile(lambda p: p.date > SINCE, dropwhile(lambda p: p.date > UNT
             post_infos.append(copy.deepcopy(post_info))
 
     else:
-        image_url = post.url
-        image_urls.append(image_url)
-        image_name = image_patten.findall(image_url)[0]
-        post_info['image_name'] = image_name
         if post.is_video:
             video_url = post.video_url
             video_urls.append(video_url)

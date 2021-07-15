@@ -5,13 +5,14 @@ from instaloader import Post
 import json
 import re
 import copy
-from shortcodes import shortcodes
+# from shortcodes import shortcodes
 
-L = instaloader.Instaloader(
-    compress_json=False
-)
+with open('shortcodes.json', encoding='utf-8') as f:
+    shortcodes = json.load(f)
 
-# L.login(user='', passwd='')  
+L = instaloader.Instaloader()
+
+# L.login(user='', passwd='')
 # 先用命令instaloader --login='你的用户名'登录，则会保存session
 L.load_session_from_file('')
 
@@ -27,30 +28,30 @@ for shortcode in shortcodes:
     post_info = {}
     post_info['shortcode'] = post.shortcode
     post_info['date'] = str(post.date)
+    image_url = post.url
+    image_urls.append(image_url)
+    image_name = image_patten.findall(image_url)[0]
+    post_info['image_name'] = image_name
     if post.typename == 'GraphSidecar':
         edges = post._field('edge_sidecar_to_children', 'edges')
         i = 0
         for item in edges:
             i += 1
-            image_url = item['node']['display_url']
-            image_urls.append(image_url)
-            image_name = image_patten.findall(image_url)[0]
-            post_info['image_name'] = image_name
+            # image_url = item['node']['display_url']
+            # image_urls.append(image_url)
+            # image_name = image_patten.findall(image_url)[0]
+            # post_info['image_name'] = image_name
             if item['node']["is_video"]:
                 video_url = item['node']['video_url']
                 video_urls.append(video_url)
                 video_name = video_patten.findall(video_url)[0]
             else:
-                video_name = ''    
+                video_name = ''
             post_info['video_name'] = video_name
             post_info['num'] = str(i)
             post_infos.append(copy.deepcopy(post_info))
 
     else:
-        image_url = post.url
-        image_urls.append(image_url)
-        image_name = image_patten.findall(image_url)[0]
-        post_info['image_name'] = image_name
         if post.is_video:
             video_url = post.video_url
             video_urls.append(video_url)

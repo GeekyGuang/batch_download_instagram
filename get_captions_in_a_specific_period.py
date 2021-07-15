@@ -18,13 +18,13 @@ L = instaloader.Instaloader(
 # 先用命令instaloader --login='你的用户名'登录，则会保存session
 L.load_session_from_file('')
 
-profile_name = 'lauren.jumps'  # 博主用户名
+profile_name = 'jumpropegal_'  # 博主用户名
 
 posts = instaloader.Profile.from_username(
     L.context, profile_name).get_posts()
 
-SINCE = datetime(2021, 7, 13)  # 开始时间
-UNTIL = datetime(2021, 7, 14)  # 结束时间(不包含)
+SINCE = datetime(2016, 1, 1)  # 开始时间
+UNTIL = datetime(2021, 1, 1)  # 结束时间(不包含)
 
 
 def download_tweets(post):

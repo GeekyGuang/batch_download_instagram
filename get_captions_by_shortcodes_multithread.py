@@ -3,8 +3,12 @@ from time import time, sleep
 from queue import Queue
 from datetime import datetime
 import instaloader
-from shortcodes import shortcodes
+# from shortcodes import shortcodes
 from instaloader import Post
+import json
+
+with open('shortcodes.json', encoding='utf-8') as f:
+    shortcodes = json.load(f)
 
 L = instaloader.Instaloader(
     download_pictures=False,
@@ -13,7 +17,7 @@ L = instaloader.Instaloader(
     compress_json=False
 )
 
-# L.login(user='', passwd='')  
+# L.login(user='', passwd='')
 # 先用命令instaloader --login='你的用户名'登录，则会保存session
 L.load_session_from_file('')
 

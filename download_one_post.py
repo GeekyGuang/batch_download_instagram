@@ -8,11 +8,11 @@ L = instaloader.Instaloader(
     compress_json=False
 )
 
-# L.login(user='', passwd='')  
+# L.login(user='', passwd='')
 # 先用命令instaloader --login='你的用户名'登录，则会保存session
-L.load_session_from_file('你的用户名')
+L.load_session_from_file('')
 
-shortcode = 'CLHlg49szHt'
+shortcode = 'CRJpOUKs3hR'
 
 post = Post.from_shortcode(L.context, shortcode)
 L.download_post(post, target='onePost')

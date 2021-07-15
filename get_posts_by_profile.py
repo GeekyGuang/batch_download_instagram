@@ -28,15 +28,19 @@ for post in posts:
     post_info = {}
     post_info['shortcode'] = post.shortcode
     post_info['date'] = str(post.date)
+    image_url = post.url
+    image_urls.append(image_url)
+    image_name = image_patten.findall(image_url)[0]
+    post_info['image_name'] = image_name
     if post.typename == 'GraphSidecar':
         edges = post._field('edge_sidecar_to_children', 'edges')
         i = 0
         for item in edges:
             i += 1
-            image_url = item['node']['display_url']
-            image_urls.append(image_url)
-            image_name = image_patten.findall(image_url)[0]
-            post_info['image_name'] = image_name
+            # image_url = item['node']['display_url']
+            # image_urls.append(image_url)
+            # image_name = image_patten.findall(image_url)[0]
+            # post_info['image_name'] = image_name
             if item['node']["is_video"]:
                 video_url = item['node']['video_url']
                 video_urls.append(video_url)
@@ -48,10 +52,6 @@ for post in posts:
             post_infos.append(copy.deepcopy(post_info))
 
     else:
-        image_url = post.url
-        image_urls.append(image_url)
-        image_name = image_patten.findall(image_url)[0]
-        post_info['image_name'] = image_name
         if post.is_video:
             video_url = post.video_url
             video_urls.append(video_url)

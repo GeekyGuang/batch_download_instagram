@@ -1,24 +1,26 @@
+# 根据profile获取所有shortcodes
+
 import instaloader
-# import datetime
+from instaloader import Post
+import json
+import re
 
 L = instaloader.Instaloader()
 
 # L.login(user='', passwd='')
 # 先用命令instaloader --login='你的用户名'登录，则会保存session
 L.load_session_from_file('')
+
 profile_name = 'jumpropegal_'  # 博主用户名
 
 posts = instaloader.Profile.from_username(
     L.context, profile_name).get_posts()
 
-# earliest_day = datetime.datetime.today()
-
-datetimes = []
-
+shortcodes = []
 for post in posts:
-    datetimes.append(post.date)
+    shortcodes.append(post.shortcode)
 
-datetimes.sort()
+with open('shortcodes.json', 'w', encoding='utf-8') as f:
+    json.dump(shortcodes, f)
 
-print(datetimes[0])
-print(len(datetimes))
+print('succeed')
