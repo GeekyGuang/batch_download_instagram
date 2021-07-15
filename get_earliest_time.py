@@ -1,5 +1,5 @@
 import instaloader
-import datetime
+# import datetime
 
 L = instaloader.Instaloader(
     download_pictures=False,
@@ -15,10 +15,14 @@ profile_name = 'jumpropegal_'  # 博主用户名
 posts = instaloader.Profile.from_username(
     L.context, profile_name).get_posts()
 
-earliest_day = datetime.datetime.today()
+# earliest_day = datetime.datetime.today()
+
+datetimes = []
 
 for post in posts:
-    if post.date < earliest_day:
-        earliest_day = post.date
+    datetimes.append(post.date)
 
-print(earliest_day)
+datetimes.sort()
+
+print(datetimes[0])
+print(len(datetimes))
