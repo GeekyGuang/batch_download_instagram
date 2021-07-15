@@ -1,5 +1,7 @@
-# 根据profile获取推文信息和images/videos下载地址
+# 根据profile获取推文信息和images下载地址
 
+from datetime import datetime
+from itertools import dropwhile, takewhile
 import instaloader
 from instaloader import Post
 import json
@@ -21,6 +23,11 @@ profile_name = 'jumpropegal_'  # 博主用户名
 posts = instaloader.Profile.from_username(
     L.context, profile_name).get_posts()
 
+
+SINCE = datetime(2020, 4, 1)  # 开始时间
+UNTIL = datetime(2020, 7, 1)  # 结束时间(不包含)
+
+# for post in takewhile(lambda p: p.date > SINCE, dropwhile(lambda p: p.date > UNTIL, posts)):
 for post in posts:
     print(post.shortcode)
     post_info = {}
